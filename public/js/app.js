@@ -4,7 +4,7 @@ const getWeather = (location, callback) => {
             if (data.error)
                 return callback(data.error)
             console.log(data)
-            callback(data.forecastData.maxTemp, data.location)
+            callback(data.forecastData, data.location)
         })
     })
 
@@ -20,8 +20,8 @@ weatherForm.addEventListener('submit', (e) => {
 
     const location = search.value
 
-    getWeather(location, (maxTemp, location) => {
-        messageOne.textContent = maxTemp
+    getWeather(location, (forecastData, location) => {
+        messageOne.textContent = 'max Temp: ' + forecastData.maxTemp + ' and min Temp: ' + forecastData.minTemp + ' with ' + forecastData.weatherDescription
         messageTwo.textContent = location
     })
 })
